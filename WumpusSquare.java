@@ -7,6 +7,7 @@ public class WumpusSquare {
     private boolean deadWumpus;
     private boolean stench;
     private boolean visited;
+    private boolean empty = true;
     public WumpusSquare(){
         gold = false;
         ladder = false;
@@ -16,6 +17,7 @@ public class WumpusSquare {
         deadWumpus = false;
         stench = false;
         visited =false;
+        empty =true;
     }
 
     public boolean isGold() {
@@ -82,8 +84,25 @@ public class WumpusSquare {
         this.visited = visited;
     }
 
+    public boolean isEmpty() {
+        return empty;
+    }
+
+    public void setEmpty(boolean empty) {
+        this.empty = empty;
+    }
+
     @Override
     public String toString(){
+        if(gold){return "G";}
+        if(ladder){return "L";}
+        if(pit){return "P";}
+        if(breeze){return "B";}
+        if(wumpus){return "W";}
+        if(deadWumpus){return "D";}
+        if(stench){return "S";}
+        if(visited){return "V";}
+        if(empty){return "*";}
         return "";
     }
 }
