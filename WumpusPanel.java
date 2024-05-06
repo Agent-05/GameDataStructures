@@ -31,26 +31,70 @@ public class WumpusPanel extends JPanel implements KeyListener {
     BufferedImage buffer;
 
     WumpusPanel(){
-
+        this.setPreferredSize(new Dimension(500,500));
+        this.setVisible(true);
     }
     void reset(){};
 
     @Override
-    public void paint(Graphics g){};
+    public void paint(Graphics g){
+
+    };
 
     @Override
     public void keyTyped(KeyEvent e) {
+        switch (e.getKeyChar()){
+            case 'w' ->{
+                wp.setDirection(WumpusPlayer.NORTH);
+            }
+            case 's' ->{
+                wp.setDirection(WumpusPlayer.SOUTH);
+            }
+            case 'a' ->{
+                wp.setDirection(WumpusPlayer.WEST);
+            }
+            case 'd' ->{
+                wp.setDirection(WumpusPlayer.EAST);
+            }
+            case 'i' ->{
 
+            }
+            case 'k' ->{
+
+            }
+            case 'j' ->{
+
+            }
+            case 'l' ->{
+
+            }
+            case 'c' ->{
+
+            }
+            case 'p' ->{
+
+            }
+            case 'n' ->{
+
+            }
+            case '*' ->{
+
+            }
+        }
     }
 
+    //useless
     @Override
     public void keyPressed(KeyEvent e) {
     }
-
+    //useless
     @Override
     public void keyReleased(KeyEvent e) {
-
     }
 
-    public void addNotify(){};
+    public void addNotify(){
+        super.addNotify();
+        requestFocus();
+    };
+
 }
