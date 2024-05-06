@@ -4,6 +4,7 @@ import java.util.*;
 public class WumpusMap {
     WumpusMap(){createMap();}
 
+    //i assign breeze and stench here but maybe that will need to be done from panel
     public static final int numRows = 10;
     public static final int numColumns = 10;
     public static final int numPits = 10;
@@ -26,10 +27,16 @@ public class WumpusMap {
         int randY;
         for(int i = 0; i < 3; i++)
         {
-            do{
-                 randX =rand.nextInt(10);
-                 randY =rand.nextInt(10);
-            }while(!grid[randY][randX].isEmpty());
+            if( i <2)//wumpus and gold can be set on top of each other
+            {
+                randX =rand.nextInt(10);
+                randY =rand.nextInt(10);
+            }else{//ladder cant be set on wumpus or gold, and pits shouldnt be placed there anyways
+                do{
+                    randX =rand.nextInt(10);
+                    randY =rand.nextInt(10);
+                }while(!grid[randY][randX].isEmpty());
+            }
             grid[randY][randX].setEmpty(false);
             if(i == 0)
                 grid[randY][randX].setGold(true);
