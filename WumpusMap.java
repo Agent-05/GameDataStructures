@@ -107,6 +107,7 @@ public class WumpusMap {
                 b.add(grid[i][a]);
             }
         }
+        return b;
     }
 
     int getLadderCol() {return numColumns;}
