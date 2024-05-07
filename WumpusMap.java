@@ -13,6 +13,9 @@ public class WumpusMap {
     static int ladderC;
     static int ladderR;
 
+    public WumpusSquare[][] getGrid(){
+        return grid;
+    }
     void createMap(){
         for (int i = 0; i < numRows;i++)
         {

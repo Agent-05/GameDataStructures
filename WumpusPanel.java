@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
+import java.io.File;
 
 public class WumpusPanel extends JPanel implements KeyListener {
     public static int PLAYING = 0;
@@ -29,15 +30,24 @@ public class WumpusPanel extends JPanel implements KeyListener {
     BufferedImage playerLeft;
     BufferedImage playerRight;
     BufferedImage buffer;
-
+    WumpusSquare[][] grid;
     WumpusPanel(){
         this.setPreferredSize(new Dimension(500,500));
         this.setVisible(true);
+        WumpusMap w = new WumpusMap();
+        grid = w.getGrid();
+        setImages();
     }
     void reset(){};
 
     @Override
     public void paint(Graphics g){
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[0].length; j++) {
+                Graphics g = grid[i][a]..getGraphics();
+                g.drawImage(img,0, 0, EverythingButPlayer);
+            }
+        }
 
     };
 
@@ -81,6 +91,32 @@ public class WumpusPanel extends JPanel implements KeyListener {
 
             }
         }
+    }
+
+    public void setImages()
+    {
+        try
+        {
+            arrow = ImageIO.read((new File("Wumpus_World_Images\\arrow.gif")));
+            //fog = ImageIO.read((new File("\\Wumpus_World_Image\\fog.gif")));
+            gold = ImageIO.read((new File("Wumpus_World_Images\\gold.gif")));
+            ladder = ImageIO.read((new File("Wumpus_World_Images\\ladder.gif")));
+            pit = ImageIO.read((new File("Wumpus_World_Images\\pit.gif")));
+            breeze = ImageIO.read((new File("Wumpus_World_Images\\breeze.gif")));
+            wumpus = ImageIO.read((new File("Wumpus_World_Images\\wumpus.gif")));
+            deadWumpus = ImageIO.read((new File("Wumpus_World_Images\\deadwumpus.gif")));
+            stench = ImageIO.read((new File("Wumpus_World_Images\\stench.gif")));
+            playerUp = ImageIO.read((new File("Wumpus_World_Images\\playerUp.png")));
+            playerDown = ImageIO.read((new File("Wumpus_World_Images\\playerDown.png")));
+            playerLeft =ImageIO.read((new File("Wumpus_World_Images\\playerLeft.png")));
+            playerRight =ImageIO.read((new File("Wumpus_World_Images\\playerRight.png")));
+            //buffer =ImageIO.read((new File("Wumpus_World_Images\\buffer.")));
+        }
+        catch(Exception e)
+        {
+            System.out.println("Error Loading Images: " + e.getMessage());
+        }
+
     }
 
     //useless
