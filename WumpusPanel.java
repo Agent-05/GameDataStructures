@@ -37,6 +37,7 @@ public class WumpusPanel extends JPanel implements KeyListener {
         this.setVisible(true);
         WumpusMap w = new WumpusMap();
         grid = w.getGrid();
+        this.setFocusable(true);
         setImages();
         repaint();
     }
@@ -83,6 +84,7 @@ public class WumpusPanel extends JPanel implements KeyListener {
 
     @Override
     public void keyTyped(KeyEvent e) {
+        System.out.println(e.getKeyChar());
         switch (e.getKeyChar()){
             case 'w' ->{
                 wp.setDirection(WumpusPlayer.NORTH);
@@ -118,7 +120,9 @@ public class WumpusPanel extends JPanel implements KeyListener {
 
             }
             case '*' ->{
-
+                cheating = !cheating;
+                repaint();
+                System.out.println("*");
             }
         }
     }
