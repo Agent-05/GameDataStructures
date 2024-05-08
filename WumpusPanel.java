@@ -29,7 +29,7 @@ public class WumpusPanel extends JPanel implements KeyListener {
     BufferedImage playerDown;
     BufferedImage playerLeft;
     BufferedImage playerRight;
-    BufferedImage buffer;
+    BufferedImage buffer = new BufferedImage(1000, 1000, BufferedImage.TYPE_4BYTE_ABGR);
     WumpusSquare[][] grid;
     WumpusPanel(){
         this.setPreferredSize(new Dimension(500,500));
@@ -37,15 +37,21 @@ public class WumpusPanel extends JPanel implements KeyListener {
         WumpusMap w = new WumpusMap();
         grid = w.getGrid();
         setImages();
+        repaint();
     }
     void reset(){};
 
     @Override
     public void paint(Graphics g){
+        g.setColor(Color.BLACK);
+        g.fillRect(0,0,getWidth(),getHeight());
         for (int i = 0; i < grid.length; i++) {
             for (int j = 0; j < grid[0].length; j++) {
-                Graphics g = grid[i][a]..getGraphics();
-                g.drawImage(img,0, 0, EverythingButPlayer);
+                WumpusSquare s = wm.getGrid()[i][j];
+                g.drawImage(floor,i*50, j*50, null);
+                if(s.isBreeze()){
+                    g.drawImage(breeze, i*50, j*50, null);
+                }
             }
         }
 
@@ -101,6 +107,7 @@ public class WumpusPanel extends JPanel implements KeyListener {
             //fog = ImageIO.read((new File("\\Wumpus_World_Image\\fog.gif")));
             gold = ImageIO.read((new File("Wumpus_World_Images\\gold.gif")));
             ladder = ImageIO.read((new File("Wumpus_World_Images\\ladder.gif")));
+            floor = ImageIO.read((new File("Wumpus_World_Images\\Floor.gif")));
             pit = ImageIO.read((new File("Wumpus_World_Images\\pit.gif")));
             breeze = ImageIO.read((new File("Wumpus_World_Images\\breeze.gif")));
             wumpus = ImageIO.read((new File("Wumpus_World_Images\\wumpus.gif")));
@@ -110,11 +117,11 @@ public class WumpusPanel extends JPanel implements KeyListener {
             playerDown = ImageIO.read((new File("Wumpus_World_Images\\playerDown.png")));
             playerLeft =ImageIO.read((new File("Wumpus_World_Images\\playerLeft.png")));
             playerRight =ImageIO.read((new File("Wumpus_World_Images\\playerRight.png")));
-            //buffer =ImageIO.read((new File("Wumpus_World_Images\\buffer.")));
         }
         catch(Exception e)
         {
             System.out.println("Error Loading Images: " + e.getMessage());
+            e.printStackTrace();
         }
 
     }
@@ -132,5 +139,7 @@ public class WumpusPanel extends JPanel implements KeyListener {
         super.addNotify();
         requestFocus();
     };
+
+    //check for multiple booleans being true cause some squares have stench and wind
 
 }

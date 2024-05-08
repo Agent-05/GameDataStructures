@@ -4,6 +4,7 @@ import java.util.*;
 public class WumpusMap {
     WumpusMap(){createMap();}
 
+
     //i assign breeze and stench here but maybe that will need to be done from panel
     public static final int numRows = 10;
     public static final int numColumns = 10;
@@ -48,22 +49,18 @@ public class WumpusMap {
                 grid[randY][randX].setWumpus(true);
                 if(randY != 0)
                 {
-                    grid[randY-1][randX].setEmpty(false);
                     grid[randY-1][randX].setStench(true);
                 }
                 if(randY != 9)
                 {
-                    grid[randY+1][randX].setEmpty(false);
                     grid[randY+1][randX].setStench(true);
                 }
                 if(randX != 0)
                 {
-                    grid[randY][randX-1].setEmpty(false);
                     grid[randY][randX-1].setStench(true);
                 }
                 if(randX != 9)
                 {
-                    grid[randY][randX+1].setEmpty(false);
                     grid[randY][randX+1].setStench(true);
                 }
             }
@@ -78,26 +75,21 @@ public class WumpusMap {
             if(grid[randY][randX].isEmpty())
             {
                 //puts breeze around holes
-                grid[randY][randX].setEmpty(false);
                 grid[randY][randX].setPit(true);
                 if(randY != 0)
                 {
-                    grid[randY-1][randX].setEmpty(false);
                     grid[randY-1][randX].setBreeze(true);
                 }
                 if(randY != 9)
                 {
-                    grid[randY+1][randX].setEmpty(false);
                     grid[randY+1][randX].setBreeze(true);
                 }
                 if(randX != 0)
                 {
-                    grid[randY][randX-1].setEmpty(false);
                     grid[randY][randX-1].setBreeze(true);
                 }
                 if(randX != 9)
                 {
-                    grid[randY][randX+1].setEmpty(false);
                     grid[randY][randX+1].setBreeze(true);
                 }
 
