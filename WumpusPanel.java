@@ -13,6 +13,7 @@ public class WumpusPanel extends JPanel implements KeyListener {
     public static int WON = 2;
 
     int status = -1;
+    boolean cheating = false;
     WumpusPlayer wp = new WumpusPlayer();
     WumpusMap wm = new WumpusMap();
     BufferedImage floor;
@@ -48,9 +49,32 @@ public class WumpusPanel extends JPanel implements KeyListener {
         for (int i = 0; i < grid.length; i++) {
             for (int j = 0; j < grid[0].length; j++) {
                 WumpusSquare s = wm.getGrid()[i][j];
-                g.drawImage(floor,i*50, j*50, null);
-                if(s.isBreeze()){
-                    g.drawImage(breeze, i*50, j*50, null);
+                if(cheating || s.isVisited())
+                {
+                    g.drawImage(floor,i*50, j*50, null);
+                    if(s.isLadder()){
+                        g.drawImage(ladder, i*50, j*50, null);
+                    }
+                    if(s.isPit()){
+                        g.drawImage(pit, i*50, j*50, null);
+                    }
+                    if(s.isWumpus()){
+                        g.drawImage(wumpus, i*50, j*50, null);
+                    }
+                    if(!s.isPit() && !s.isLadder())
+                    {
+                        if(s.isGold()){
+                            g.drawImage(gold, i*50, j*50, null);
+                        }
+                        if(s.isBreeze()){
+                            g.drawImage(breeze, i*50, j*50, null);
+                        }
+                        if(s.isStench()){
+                            g.drawImage(stench, i*50, j*50, null);
+                        }
+                    }
+                }else{
+                    g.drawRect(i*50, j*50, 50, 50);
                 }
             }
         }

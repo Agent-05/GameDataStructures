@@ -65,7 +65,10 @@ public class WumpusMap {
                 }
             }
             if(i == 2)
+            {
                 grid[randY][randX].setLadder(true);
+                grid[randY][randX].setVisited(true);
+            }
         }
         //goes to place pits
         for(int i = 0; i < numPits; i++)
